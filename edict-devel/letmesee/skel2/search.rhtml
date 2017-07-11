@@ -1,0 +1,64 @@
+<%
+dict.each do |book|
+        book = book.to_i
+	item = search( book )
+        if (item && item.length != 0) then
+%>
+    <hr class="sep">
+    <div class="day">
+      <h2><span class="date"><%= conv(dicts[book].title) %> Hit:<%= item.length %></span></h2>
+      <div class="body">
+<%
+		item.each do |item|
+%>
+	<div class="section">
+	  <h3><%= section_anchor %><%= html_output(conv(item[0])) %></h3>
+	  <p class="content"><%= html_output(conv(item[1])) %></p>
+	</div>
+<% end %>
+      </div>
+      <div class="referer"></div>
+    </div>
+<%
+	end
+end
+%>
+<%
+item_map = {}
+ispell_dict_list.each do |ispell_dict|
+        item_list = spell_check(query, ispell_dict)
+        if item_list and item_list.length != 0
+                item_map[ispell_dict] = item_list
+        end
+end
+if item_map.length != 0 then
+%>
+    <hr class="sep">
+    <div class="day">
+      <h2><span class="date">スペル・チェッカー</span></h2>
+      <div class="body">
+<%
+        item_map.each do |ispell_dict,item_list|
+%>
+        <div class="section">
+          <h3><%= ispell_dict %></h3>
+            <p class="content">
+              <input type="hidden" name="mode" value="exactsearch">
+<%
+                item_list.each do |item|
+%>
+              <input type="submit" name="query" value="<%= CGI::escapeHTML(item) %>">
+<%
+                end
+%>
+            </p>
+        </div>
+<%
+        end
+%>
+      </div>
+      <div class="referer"></div>
+    </div>
+<%
+end
+%>

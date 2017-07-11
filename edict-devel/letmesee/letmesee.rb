@@ -66,7 +66,7 @@ class LetMeSee
 			@query = NKF::nkf("-w -m0", @query)
 		end
 		@dict = @cgi.params['dict']
-		@mode = @cgi.params['mode'][0] || 'exactsearch'
+		@mode = @cgi.params['mode'][0] || 'search'
 		@maxhit = (@cgi.params['maxhit'][0] || 10).to_i
 		@book = @cgi.params['book'][0].to_i
 		@decoration = 0
