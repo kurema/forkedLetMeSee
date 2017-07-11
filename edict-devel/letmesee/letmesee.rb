@@ -104,7 +104,7 @@ class LetMeSee
 	def eval_rhtml( )
 		files = ["header.rhtml", @rhtml, "footer.rhtml"]
 		rhtml = files.collect {|file|
-			path = "#{PATH}/skel/#{file}"
+			path = "#{PATH}/skel2/#{file}"
 			File::open( path , "r:utf-8" ) {|f| f.read }
 		}.join
 		r = ERB::new( rhtml.untaint, nil, 1 ).result( binding )

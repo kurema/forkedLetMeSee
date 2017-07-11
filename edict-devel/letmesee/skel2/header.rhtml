@@ -28,29 +28,3 @@
 	  <option value="50">50</option>
 	</select>
       </div>
-      <p>辞書一覧</p>
-      <table cellpadding="0" width="100%">
-<%
-0.step(dicts.length - 1, num_columns) do |i|
-%>
-        <tr>
-<%
-        0.upto(num_columns - 1) do |j|
-%>
-	  <td>
-<%
-                if i + j < dicts.length
-%>
-	    <input type="checkbox" name="dict" value="<%= i + j %>"<%= if (dict.include?((i + j).to_s) or dict.length == 0); " checked" else "" end %>><%= conv(dicts[i + j].title) %>
-<%
-                end
-%>
-          </td>
-<%
-        end
-%>
-        </tr>
-<%
-end
-%>
-      </table>
