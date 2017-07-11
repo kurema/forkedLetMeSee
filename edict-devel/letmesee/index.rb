@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 begin
-	require 'letmesee.rb'
+	require './letmesee.rb'
 	@cgi = CGI.new
 
 	if @cgi.valid?( 'mode' ) then

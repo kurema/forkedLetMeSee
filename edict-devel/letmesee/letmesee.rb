@@ -17,7 +17,7 @@ require 'nkf'
 require 'iconv'
 require 'eb'
 require 'cgi'
-require 'stem'
+require './stem'
 begin
 	require 'erb_fast'
 rescue LoadError
@@ -105,14 +105,14 @@ class LetMeSee
 		files = ["header.rhtml", @rhtml, "footer.rhtml"]
 		rhtml = files.collect {|file|
 			path = "#{PATH}/skel/#{file}"
-			File::open( path ) {|f| f.read }
+			File::open( path , "r:utf-8" ) {|f| f.read }
 		}.join
 		r = ERB::new( rhtml.untaint, nil, 1 ).result( binding )
 		r
 	end
 
 	def load_conf
-		eval( File::open( "#{PATH}/letmesee.conf" ) { |f| f.read }.untaint )
+		eval( File::open( "#{PATH}/letmesee.conf" ,"r:utf-8" ) { |f| f.read }.untaint )
 		@num_columns = 3 unless @num_columns
 		@ispell_command = "ispell" unless @ispell_command
 		@ispell_dict_list = ['american'] unless @ispell_dict_list
