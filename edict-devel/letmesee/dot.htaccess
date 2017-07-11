@@ -1,0 +1,13 @@
+DirectoryIndex index.rb
+Options +ExecCGI
+AddHandler cgi-script .rb
+
+<Files "*">
+    Order deny,allow
+    Deny from all
+    Allow from 127.0.0.1
+</Files>
+
+<Files "letmesee.conf">
+   Deny from all
+</Files>

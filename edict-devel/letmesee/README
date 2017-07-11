@@ -1,0 +1,23 @@
+◆電子辞書検索ウェブアプリケーション let me see...
+<http://openlab.jp/edict/letmesee/>
+
+  かずひこ <kazuhiko@fdiary.net>
+
+◇特徴
+
+インストールが簡単で、使いやすいインタフェイスの電子辞書検索 CGI です。
+
+◇必要なもの
+
+EB Library <http://www.sra.co.jp/people/m-kasahr/eb/>
+  バージョン 3.3 以降
+
+RubyEB <http://rubyeb.sourceforge.net/>
+  バージョン 2.2 以降
+
+電子辞書
+  EB Library の対応しているもの
+
+◇インストール
+
+INSTALL ファイルをご覧下さい。

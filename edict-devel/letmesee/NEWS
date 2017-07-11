@@ -1,0 +1,27 @@
+* Changes in 1.2
+
+** appendix に対応
+
+* Changes in 1.1
+
+** eruby を使わず、erb を使うように変更。
+
+* Changes in 1.0.1
+
+** ヘッダとフッタのカスタマイズ
+詳しくは letmesee.conf.sample をご覧ください。
+
+** ruby-1.8 に対応
+
+* Changes in 1.0
+
+** リンク、外字、画像、音声、動画に対応
+
+** メニュー検索、著作権表示に対応
+
+** 設定ファイルの名前および書式の変更
+ファイル名が config.rb から letmesee.conf に変更になりました。
+letmesee.conf.sample を参照してください (従来 $dictlist となっていたもの
+が @dictlist になっています)。
+
+** tDiary <http://www.tdiary.org/> のテーマに対応

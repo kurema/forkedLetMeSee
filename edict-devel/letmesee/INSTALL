@@ -1,0 +1,20 @@
+◇インストール
+
+'let me see...' は RubyEB を使った CGI として実装されています。実行する
+ためには WWW サーバだけでなく、RubyEB が必要です。
+
+ ・ RubyEB の開発元
+    http://rubyeb.sourceforge.net/
+
+.htaccess ファイルのサンプルとして dot.htaccess を同梱してありますので、
+必要に応じて書き換えてください。
+
+辞書の設定は、letmesee.conf.sample を letmesee.conf にコピーして編集して
+ください。
+
+◇注意
+
+'let me see...' そのものは、一切のアクセス制限を設けていません。http サー
+バ側で適切なアクセス制限を設けて、辞書コンテンツ制作者の権利を不当に侵害
+することのないよう、くれぐれもご注意ください。サンプルの dot.htaccess で
+は、localhost 以外からのアクセスを禁止する設定にしてあります。

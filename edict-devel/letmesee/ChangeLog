@@ -1,0 +1,271 @@
+2008-03-16  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* skel/menu.html, skel/reference.rhtml, skel/search.html: convert
+	to UTF-8 before calling html_output.
+
+2007-03-08  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: fix a bug in case of empty 'dict=' queries.
+
+2007-02-16  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: support input encoding (ie) query.
+
+2007-02-15  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: ignore RuntimeError that sometimes happens with EB
+	dictionaries.
+
+2007-02-10  Kazuhiko  <kazuhiko@fdiary.net>
+	* letmesee.rb: fix mojibake.
+	* theme/default/default.css: add 'sup'.
+
+2007-02-09  Kazuhiko  <kazuhiko@fdiary.net>
+	* index.rb, letmesee.rb, skel/header.rhtml: support keyword search.
+
+	* letmesee.rb: set maxhit to 10 if not specified.
+	* skel/menu.rhtml, skel/reference.rhtml: convert to utf-8.
+	* theme/default/default.css: do not display sanchor.
+
+2007-02-08  Kazuhiko  <kazuhiko@fdiary.net>
+	* letmesee.rb, skel/header.rhtml, skel/help.html,
+	skel/search.html: convert to utf-8.
+	* letmesee.rb (html_output): 
+
+2007-01-15  Kazuhiko  <kazuhiko@fdiary.net>
+	* letmesee.rb (initialize): fix a bug in setting a mode.
+
+2007-01-10  Yoshinori K. OKUJI  <okuji@enbug.org>
+	* letmesee.rb (spell_check): convert iso-8859-1 characters of
+	ispell's result to ascii characters.
+
+2007-01-09  Kazuhiko  <kazuhiko@fdiary.net>
+	* index.rb, letmesee.rb: select all dictionaries if params['dict']
+	is empty. do exactsearch if params['mode'] is empty.
+
+2004-07-02  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (gaiji_w): Use gif instead of xbm.
+	(gaiji_n): Ditto.
+
+2004-05-04  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (initialize): recognize not first but last
+	value of cgi parameters (query and mode).
+	* skel/search.rhtml: use submit buttons instead of normal links
+	to follow selection of dictionaries.
+
+	* skel/header.rhtml, skel/search.rhtml: escape HTML.
+
+2004-05-02  Yoshinori K. OKUJI  <okuji@enbug.org>
+
+	* letmesee.rb (spell_check): New method.
+	(num_columns): New attr reader.
+	(ispell_command): Likewise.
+	(ispell_dict_list): Likewise.
+	(load_conf): Initialize @num_columns,
+	@ispell_command and @ispell_dict_list if not initialized.
+	
+	* skel/search.rhtml: Add a result of spell checking at the
+	bottom.
+
+	* skel/header.rhtml: Use a table for the list of dictionaries.
+
+	* letmesee.conf.sample (@num_columns): New variable. 
+	(@ispell_command): Likewise.
+	(@ispell_dict_list): Likewise.
+
+2004-03-23  YAMADA Kazushige <kazusige@pb3.so-net.ne.jp>
+
+	* letmesee.rb (initialize): bind each subbook.
+
+2004-03-22  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: code refactoring. use semicolon as a separator.
+
+2004-03-22  YAMADA Kazushige <kazusige@pb3.so-net.ne.jp>
+
+	* letmesee.rb: appendix support.
+
+2003-11-29  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (search): Support stemming.
+	* stem.rb: import from <http://www.yasgursfarm.us/rdic/>.
+
+2003-11-22  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (hookset): Support decoration hooks.
+
+2003-11-20  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (initialize): Catch exception at binding
+	dictionaries.
+
+2003-10-29  Takashi NEMOTO  <tnemoto@mvi.biglobe.ne.jp>
+
+	* Makefile (FILES): Remove extract.rb from FILES list. (CVS only)
+
+2003-10-20  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: More fix for valid html. Accurate gaiji image size.
+
+	* extract.rb: Merged into index.rb.
+
+	* letmesee.rb: Use erblight if erb is unavailable. Fix
+	content-type header for binary data.
+
+	* index.rb: Add charset header.
+
+2003-10-17  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rb: Completely rewritten. Use erb instead of eruby.
+	* letmesee.rb: Revise for erb. Revise for mod_ruby.
+	* skel/header.html: New file.
+	* skel/footer.rhtml: Ditto.
+	* skel/menu.rhtml: Ditto.
+	* skel/reference.rhtml: Ditto.
+	* skel/search.rhtml: Ditto.
+
+2003-10-16  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rb: Make more tdiary-compatible html.
+	* letmesee.rb: Remove needless '</a>'.
+
+2003-10-14  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* extract.rb: 'type' -> 'mode'
+	* letmesee.rb: New variable '@index'.
+
+2003-10-13  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rb: Fix a problem when a dictionary has no copyright
+	information etc.
+	* letmesee.rb: 'type' -> 'mode'
+
+2003-04-15  Takashi NEMOTO  <tnemoto@mvi.biglobe.ne.jp>
+
+	* Makefile (FILES): Rename index.rhtml.ja => index.rb
+	* theme/default/README: Copy from letmesee-1.0 archive
+
+2003-04-09  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (hookset): Check existence of
+	'HOOK_BEGIN_IN_COLOR_BMP' and 'HOOK_BEGIN_IN_COLOR_JPEG'.
+
+2003-03-04  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rb: Rename from 'index.rhtml.ja'. 
+	Add '#!/usr/bin/eruby -Ke'.
+	(for apache2).
+	* dot.htaccess: 'DirectoryIndex' is now 'index.rb' instead of
+	index.rhtml.
+
+	* letmesee.rb: Support ruby 1.8.0 preview2.
+
+2003-02-03  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: New variables '@header' and '@footer'.
+	(mpeg): Use 'read_mpeg' again.
+	(mono_graphic): Use iterator for safety.
+	(bmp): Ditto.
+	(jpeg): Ditto.
+	(wave): Ditto.
+
+2003-01-29  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee: Version 1.0.
+
+2003-01-27  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.conf.sample: Add tdiary-compatible settings.
+
+2003-01-24  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rhtml.ja: Display usage on startup.
+
+	* letmesee.rb (load_conf): 'config.rb' -> 'letmesee.conf'
+
+	* letmesee.css: p.book -> h2, p.heading -> h3
+
+	* letmesee.rb: New customizable variable '@force_inline'
+
+2003-01-22  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rhtml.ja: Support menu and copyright search.
+	* letmesee.rb: Ditto.
+
+2003-01-21  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb (mpeg): Use 'compose_mpegfilename' instead
+	of 'read_mpeg'.
+
+2003-01-20  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rhtml.ja: Add error message.
+	* letmesee.css: Remove 'span.nonewline'
+	* letmesee.rb (hookset): Remove hooks for NO_NEWLINE.
+
+2003-01-20  OBATA Takuya <den@studio-sbs.org>
+
+	* index.rhtml.ja: Add 'ERuby.charset = "euc-jp"'.
+
+2003-01-19  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee.rb: Image, Audio, and Video support.
+
+	* dot.htaccess: Revise for *.rb cgi script.
+
+	* config.rb.sample: $xxxx -> @xxxx
+	* letmesee.rb (initialize): New array '@bookid[]' for
+	record subbook id of each dictionary.
+	(hookset): Revise for gaiji support.
+	(load_conf): New function.
+
+	* extract.rb: New file.
+
+	* index.rhtml.ja: Preserve search mode. Support reference.
+	* letmesee.rb: Revise for reference etc.
+	* letmesee.css (span.reference): New entry.
+	(span.nonewline): Ditto.
+
+2001-10-09  YAMASHITA Junji <ysjj@unixuser.org>
+
+	* index.rhtml.ja: Check the existence of ENV['PATH_TRANSLATED'].
+	Output not nil but "" when a 'dict' is not checked.
+
+	* letmesee.rb (LetMeSee#initialize): Explicitly convert 'query'
+	strings to euc.
+
+2001-10-07  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* index.rhtml.ja: Revise for style sheet.
+	* letmesee.css: New file.
+	* logo.png: Ditto.
+	* letmesee.png: Ditto.
+
+2001-10-02  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee: Version 0.1.1.
+
+	* index.rhtml.ja: Rename from index.rhtml.  Fix problem in
+	selecting books.  Keep selected books in a result page.
+
+2001-10-01  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee: Version 0.1.
+
+	* index.rhtml: Move most of logical parts to 'letmesee.rb'.
+
+	* letmesee.rb (String): Add method 'html_output'.
+	(LetMeSee): New class.
+
+	* dot.htaccess: Allow connection from localhost only as default.
+
+	* index.rhtml: Support forward and backward search.
+	Support max hits per dictionary.
+	Use CGI.escapeHTML.
+	Replace \n with <br>.
+
+2001-09-30  Kazuhiko  <kazuhiko@fdiary.net>
+
+	* letmesee: start development.
