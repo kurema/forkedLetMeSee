@@ -17,6 +17,18 @@ let me see...はEP-WINGをcgiで実行しブラウザから検索を可能にす
 requireでローカルファイルを参照する際に"./"が必要になったようなので修正しました。  
 これで現時点では機能しました。
 
+## 元プロジェクトについて
+### 開発者
+[edict-devel/letmesee/AUTHORS](edict-devel/letmesee/AUTHORS)参照。
+### ライセンス
+GPLライセンスです。
+[edict-devel/letmesee/COPYING](edict-devel/letmesee/COPYING)参照。
+### 取得方法
+```
+$ cvs -d :pserver:guest@openlab.jp:/circus/cvsroot login
+CVS password: guest
+$ cvs -d :pserver:guest@openlab.jp:/circus/cvsroot co edict-devel/letmesee
+```
 ## ToDo
 XMLでデータを取得しAndroidで見れるようにしたい。  
 あと画面表示をもうちょっと現代風にしたいかな。
