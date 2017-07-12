@@ -69,7 +69,7 @@ class LetMeSee
 		@mode = @cgi.params['mode'][0] || 'exactsearch'
 		@maxhit = (@cgi.params['maxhit'][0] || 10).to_i
 		@book = @cgi.params['book'][0].to_i
-		@decoration = 0
+		@decoration = []
 		@dicts = []
 		@dictlist.each do |item|
 			if item.class == String
@@ -440,8 +440,8 @@ class LetMeSee
 		end
 		if EB.const_defined?(:HOOK_BEGIN_DECORATION)
 			h.register(EB::HOOK_BEGIN_DECORATION) do |eb2,argv|
-				@decoration = argv[1]
-				case @decoration
+				@decoration.push(argv[1])
+				case argv[1]
 				when 1
 					'\<i\>'
 				when 3
@@ -449,7 +449,7 @@ class LetMeSee
 				end
 			end
 			h.register(EB::HOOK_END_DECORATION) do |eb2,argv|
-				case @decoration
+				case @decoration.pop
 				when 1
 					'\</i\>'
 				when 3
