@@ -1,8 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
+
 <html lang="ja">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <%= css_tag %>
     <title>let me see...</title>
   </head>
@@ -10,9 +11,8 @@
     <%= header %>
     <form method="get" action="<%= index %>">
       <div>
-	<input name="query" size="20" value="<%= CGI::escapeHTML(query || "") %>">
-	<input type="submit" value="検索">
-	検索方法：
+	<input type="text" name="query" size="20" value="<%= CGI::escapeHTML(query || "") %>"><!--
+	--><input type="submit" value="検索">
 	<select name="mode">
 	  <option value="exactsearch" <%= if (mode == 'exactsearch'); "selected" else "" end %>>完全一致</option>
 	  <option value="search" <%= if (mode != 'exactsearch' && mode != 'endsearch'); "selected" else "" end %>>前方一致</option>
@@ -20,11 +20,10 @@
 	  <option value="keywordsearch" <%= if (mode == 'keywordsearch'); "selected" else "" end %>>条件検索</option>
 	  <option value="menu">メニュー</option>
 	  <option value="copyright">著作権表示</option>
-	</select>
-	　辞書毎の最大ヒット数：
-	<select name="maxhit">
-	  <option selected value="10">10</option>
-	  <option value="20">20</option>
-	  <option value="50">50</option>
+	</select><!--
+	--><select name="maxhit">
+	  <option selected value="10">10件</option>
+	  <option value="20">20件</option>
+	  <option value="50">50件</option>
 	</select>
       </div>
