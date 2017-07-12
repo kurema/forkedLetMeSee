@@ -97,7 +97,7 @@ class LetMeSee
 	def html_output( str )
 		r = str.gsub(/\\</, '<').gsub(/\\>/, '>').gsub(/\\"/, '"')
 		r.gsub!(/<reference>(.+?)<\/reference (.+?)>/) { "<a href=\"#{@index}?mode=reference&amp;#{$2}\">#{$1}</a>" }
-		r.gsub!(/<mono_graphic (.+?)>(.+?)<\/mono_graphic (.+?)>/) {"<img src=\"#{@index}?mode=mono_graphic&amp;#{$3}&amp;#{$1}\" alt=\"[画像]\">#{$2}" }
+		r.gsub!(/<mono_graphic (.+?)>(.+?)<\/mono_graphic (.+?)>/) {"<img src=\"#{@index}?mode=mono_graphic&amp;#{$3}&amp;#{$1}\" alt=\"[画像]\" />#{$2}" }
 		return r
 	end
 
@@ -349,13 +349,13 @@ class LetMeSee
 	def hookset (book)
 		h = EB::Hookset.new
 		h.register(EB::HOOK_NEWLINE) do |eb2,argv|
-			"\\<br\\>\n"
+			"\\<br /\\>\n"
 		end
 		h.register(EB::HOOK_WIDE_FONT) do |eb2,argv|
-			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_w;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\"\>',book, argv[0], @fontsize_w, @fontsize)
+			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_w;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" /\>',book, argv[0], @fontsize_w, @fontsize)
 		end
 		h.register(EB::HOOK_NARROW_FONT) do |eb2,argv|
-			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_n;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\"\>',book, argv[0], @fontsize_n, @fontsize)
+			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_n;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" /\>',book, argv[0], @fontsize_n, @fontsize)
 		end
 		h.register(EB::HOOK_BEGIN_EMPHASIS) do |eb2,argv|
 			'\<strong\>'
@@ -403,14 +403,14 @@ class LetMeSee
 		end
 		h.register(EB::HOOK_BEGIN_COLOR_BMP) do |eb2,argv|
 			if @force_inline
-				%Q!\<img src=\"#{@index}?mode=bmp;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\"\>!
+				%Q!\<img src=\"#{@index}?mode=bmp;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\" /\>!
 			else
 				%Q!\<a href=\"#{@index}?mode=bmp;book=#{book};page=#{argv[2]};offset=#{argv[3]}\">#{IMG_STR} !
 			end
 		end
 		h.register(EB::HOOK_BEGIN_COLOR_JPEG) do |eb2,argv|
 			if @force_inline
-				%Q!\<img src=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\"\>!
+				%Q!\<img src=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\" /\>!
 			else
 				%Q!\<a href=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\">#{IMG_STR} !
 			end
@@ -421,10 +421,10 @@ class LetMeSee
 			end
 		end
 		h.register(EB::HOOK_BEGIN_IN_COLOR_BMP) do |eb2,argv|
-			%Q!\<img src=\"#{@index}?mode=bmp;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\"\>!
+			%Q!\<img src=\"#{@index}?mode=bmp;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\" /\>!
 		end if EB.const_defined?(:HOOK_BEGIN_IN_COLOR_BMP)
 		h.register(EB::HOOK_BEGIN_IN_COLOR_JPEG) do |eb2,argv|
-			%Q!\<img src=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\"\>!
+			%Q!\<img src=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\" /\>!
 		end if EB.const_defined?(:HOOK_BEGIN_IN_COLOR_JPEG)
 		h.register(EB::HOOK_BEGIN_WAVE) do |eb2,argv|
 			%Q!\<a href=\"#{@index}?mode=wave;book=#{book};page=#{argv[2]};offset=#{argv[3]};page2=#{argv[4]};offset2=#{argv[5]}\">#{AUDIO_STR} !
