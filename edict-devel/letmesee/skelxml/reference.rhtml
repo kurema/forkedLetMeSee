@@ -2,16 +2,11 @@
 item = content( book )
 if item then
 %>
-    <hr class="sep">
-    <div class="day">
-      <h2><span class="date"><%= conv(dicts[book].title) %></span></h2>
-      <div class="body">
-	<div class="section">
-	  <p class="content"><%= html_output(conv(item)) %></p>
-	</div>
-      </div>
-      <div class="referer"></div>
-    </div>
+    <resultgroup dictionary="<%= conv(dicts[book].title) %>" dictionary_id="<%= conv(book.to_s) %>" >
+      <result>
+        <content><%= html_output(conv(item)) %></content>
+      </result>
+    </resultgroup>
 <%
 end
 %>

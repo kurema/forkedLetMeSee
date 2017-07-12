@@ -1,56 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-        "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="ja">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<%= css_tag %>
-    <title>let me see...</title>
-  </head>
-  <body>
-    <%= header %>
-    <form method="get" action="<%= index %>">
-      <div>
-	<input name="query" size="20" value="<%= CGI::escapeHTML(query || "") %>">
-	<input type="submit" value="検索">
-	検索方法：
-	<select name="mode">
-	  <option value="exactsearch" <%= if (mode == 'exactsearch'); "selected" else "" end %>>完全一致</option>
-	  <option value="search" <%= if (mode != 'exactsearch' && mode != 'endsearch'); "selected" else "" end %>>前方一致</option>
-	  <option value="endsearch" <%= if (mode == 'endsearch'); "selected" else "" end %>>後方一致</option>
-	  <option value="keywordsearch" <%= if (mode == 'keywordsearch'); "selected" else "" end %>>条件検索</option>
-	  <option value="menu">メニュー</option>
-	  <option value="copyright">著作権表示</option>
-	</select>
-	　辞書毎の最大ヒット数：
-	<select name="maxhit">
-	  <option selected value="10">10</option>
-	  <option value="20">20</option>
-	  <option value="50">50</option>
-	</select>
-      </div>
-      <p>辞書一覧</p>
-      <table cellpadding="0" width="100%">
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<letmesee>
+  <dictionaries>
 <%
-0.step(dicts.length - 1, num_columns) do |i|
+0.upto(dicts.length - 1) do |i|
 %>
-        <tr>
-<%
-        0.upto(num_columns - 1) do |j|
-%>
-	  <td>
-<%
-                if i + j < dicts.length
-%>
-	    <input type="checkbox" name="dict" value="<%= i + j %>"<%= if (dict.include?((i + j).to_s) or dict.length == 0); " checked" else "" end %>><%= conv(dicts[i + j].title) %>
-<%
-                end
-%>
-          </td>
-<%
-        end
-%>
-        </tr>
+    <dictionary id="<%= i %>" title="<%= conv(dicts[i].title) %>" />
 <%
 end
 %>
-      </table>
+  </dictionaries>
+  <results>
