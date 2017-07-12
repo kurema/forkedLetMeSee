@@ -4,7 +4,7 @@ if item then
 %>
     <resultgroup dictionary="<%= conv(dicts[book].title) %>" dictionary_id="<%= conv(book.to_s) %>" >
       <result>
-        <content><%= html_output(conv(item)) %></content>
+        <l:content xmlns="http://www.w3.org/1999/xhtml"><%= html_output(conv(item)) %></content>
       </result>
     </resultgroup>
 <%

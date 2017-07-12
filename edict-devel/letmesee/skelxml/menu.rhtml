@@ -9,8 +9,8 @@ dict.each do |book|
 %>
     <resultgroup dictionary="<%= conv(dicts[book].title) %>" dictionary_id="<%= conv(book.to_s) %>" >
       <result>
-        <title><%= html_output(conv(dicts[book].title)) %></title>
-        <content><%= html_output(conv(item)) %></content>
+        <l:title xmlns="http://www.w3.org/1999/xhtml"><%= html_output(conv(dicts[book].title)) %></title>
+        <l:content xmlns="http://www.w3.org/1999/xhtml"><%= html_output(conv(item)) %></content>
       </result>
     </resultgroup>
 <%

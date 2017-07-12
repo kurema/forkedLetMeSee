@@ -9,8 +9,8 @@ dict.each do |book|
 		item.each do |item|
 %>
       <result>
-        <title><%= html_output(conv(item[0])) %></title>
-        <content><%= html_output(conv(item[1])) %></content>
+        <l:title xmlns="http://www.w3.org/1999/xhtml"><%= html_output(conv(item[0])) %></title>
+        <l:content xmlns="http://www.w3.org/1999/xhtml"><%= html_output(conv(item[1])) %></content>
       </result>
 <% end %>
     </resultgroup>
