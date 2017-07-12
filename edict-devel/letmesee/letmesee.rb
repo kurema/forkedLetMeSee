@@ -67,6 +67,7 @@ class LetMeSee
 		end
 		@dict = @cgi.params['dict']
 		@mode = @cgi.params['mode'][0] || 'search'
+		@xml = @cgi.params['xml'][0] == 'xml'
 		@maxhit = (@cgi.params['maxhit'][0] || 10).to_i
 		@book = @cgi.params['book'][0].to_i
 		@decoration = 0
@@ -104,7 +105,8 @@ class LetMeSee
 	def eval_rhtml( )
 		files = ["header.rhtml", @rhtml, "footer.rhtml"]
 		rhtml = files.collect {|file|
-			path = "#{PATH}/skel2/#{file}"
+			skel_dir = @xml ? "skelxml" : "skel2"
+			path =  "#{PATH}/#{skel_dir}/#{file}"
 			File::open( path , "r:utf-8" ) {|f| f.read }
 		}.join
 		r = ERB::new( rhtml.untaint, nil, 1 ).result( binding )
