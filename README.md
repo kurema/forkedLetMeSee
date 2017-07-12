@@ -36,6 +36,8 @@ $ cvs -d :pserver:guest@openlab.jp:/circus/cvsroot co edict-devel/letmesee
 ### 参考
 * 公式ページ：http://openlab.ring.gr.jp/edict/letmesee/index.html.ja
 * 大変分かりやすい手順解説：https://skalldan.wordpress.com/2013/03/11/raspberry-pi-で遊ぶ-9-辞書サーバーとして/
+* RubyEB(EBライブラリのRubyラッパー)：https://github.com/kubo/rubyeb19
+* EBライブラリ：リンク切れ
 ## ToDo
 * XMLでデータを取得しAndroidで見れるようにしたい。  
 * あと画面表示をもうちょっと現代風にしたいかな。
