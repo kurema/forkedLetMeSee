@@ -119,4 +119,7 @@ body{
 p,div,h1,h2,h3{
   max-width: 100%; 
 }
+p{
+  font-size: 0.9em;
+}
 }
