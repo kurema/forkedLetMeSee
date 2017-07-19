@@ -26,8 +26,8 @@ h2 {
   margin-bottom: 0.1em;
   padding: 0.3em;
   border-style: solid;
-  border-color: #eeeeee #333333 #333333 #eeeeee;
-  border-width: 1px;
+  border-width: 0px;
+  border-radius: 15px 0 0 15px;
 }
 
 /*
@@ -36,7 +36,8 @@ h2 {
 h3 {
   border-style: solid;
   border-color: #aaaaaa;
-  border-width: 0px 0px 1px 0px;
+  border-width: 0px 0px 1px 4px;
+  padding: 2px 2px 3px 6px
 }
 
 /*
