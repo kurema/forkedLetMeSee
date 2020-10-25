@@ -248,13 +248,13 @@ module Stem
     "wrung" => "wring", "wring" => "wring", 
     "written" => "write", "wrote" => "write", "write" => "write",
 
-    "have" => "have", "had" => "have", "has" => "have", "haven't" => "have", "hasn't" => "have", "hadn't" => "have", 
+    "has" => "have", "haven't" => "have", "hasn't" => "have", "hadn't" => "have",
     "is" => "be", "are" => "be", "am" => "be", "isn't" => "be", "aren't" => "be", "wasn't" => "be", "weren't" => "be",
-    "do" => "do", "does" => "do", "did" => "do", "doesn't" => "do", "didn't" => "do", "don't" => "do",
-    "may" => "may", "might" => "may", "mayn't" => "may", "mightn't" => "may",  
+    "does" => "do", "doesn't" => "do", "didn't" => "do", "don't" => "do",
+    "may" => "may", "might" => "may", "mayn't" => "may", "mightn't" => "may",
     "can" => "can", "could" => "can", "can't" => "can", "couldn't" => "can",
     "will" => "will", "would" => "will", "won't" => "will", "wouldn't" => "will",
-    "must" => "must", "mustn't" => "must", 
+    "must" => "must", "mustn't" => "must",
 
     "good" => "good", "better" => "good", "best" => "good",
     "bad" => "bad", "worse" => "bad", "worst" => "bad",
