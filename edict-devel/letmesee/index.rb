@@ -1,7 +1,15 @@
 #!/usr/bin/env ruby
+
+def get_index()
+        @path_cd = File::dirname( __FILE__ )
+        @path =  "#{@path_cd}/skel2/index.html"
+        File::open( @path , "r:utf-8" ) {|f| f.read }
+end
+
 begin
 	require './letmesee.rb'
 	@cgi = CGI.new
+	is_index = false
 
 	if @cgi.valid?( 'mode' ) then
 		case @cgi.params['mode'][0]
@@ -15,13 +23,15 @@ begin
 			l = LetMeSee::new( @cgi, nil )
 			l.send( l.mode )
 			exit
-			else
-			l = LetMeSee::new( @cgi, 'help.rhtml' )
+			else			
+#			l = LetMeSee::new( @cgi, 'help.rhtml' )
+			is_index = true
 		end
 	elsif @cgi.valid?( 'query' ) then
 		l = LetMeSee::new( @cgi, 'search.rhtml' )
 	else
-		l = LetMeSee::new( @cgi, 'help.rhtml' )
+#		l = LetMeSee::new( @cgi, 'help.rhtml' )
+		is_index = true
 	end
 
 	head = {
@@ -29,7 +39,8 @@ begin
 		'Vary' => 'User-Agent',
 		'charset' => 'UTF-8'
 	}
-	body = l.eval_rhtml
+	body = is_index && @cgi.params['output'][0] != 'xml' ? get_index() : l.eval_rhtml
+	#body = l.eval_rhtml
 	head['Content-Length'] = body.size.to_s
 	head['Pragma'] = 'no-cache'
 	head['Cache-Control'] = 'no-cache'
@@ -43,3 +54,4 @@ rescue Exception
 	puts ""
 	puts $@.join( "\n" )
 end
+
