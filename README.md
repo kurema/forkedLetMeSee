@@ -1,6 +1,8 @@
 # forkedLetMeSee
 forked version of let me see...
 
+[Original README](edict-devel/letmesee/README)
+
 ## 概要
 電子辞書オープンラボ・かずひこ様などが作成したlet me see...のフォークです。  
 let me see...はEP-WINGをcgiで実行しブラウザから検索を可能にするソフトウェアです。  
