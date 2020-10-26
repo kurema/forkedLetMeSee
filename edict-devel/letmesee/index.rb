@@ -3,7 +3,7 @@
 def get_index()
         @path_cd = File::dirname( __FILE__ )
         @path =  "#{@path_cd}/skel2/index.html"
-        File::open( @path , "r:utf-8" ) {|f| f.read }
+        File::open( @path , "r" ) {|f| f.read }
 end
 
 begin
@@ -23,14 +23,18 @@ begin
 			l = LetMeSee::new( @cgi, nil )
 			l.send( l.mode )
 			exit
-			else			
-#			l = LetMeSee::new( @cgi, 'help.rhtml' )
-			is_index = true
+			else
+			if @cgi.params['output'][0] == 'xml' then
+				l = LetMeSee::new( @cgi, 'help.rhtml' )
+			else
+				is_index = true
+			end
 		end
 	elsif @cgi.valid?( 'query' ) then
 		l = LetMeSee::new( @cgi, 'search.rhtml' )
+	elsif @cgi.params['output'][0] == 'xml' then
+		l = LetMeSee::new( @cgi, 'help.rhtml' )
 	else
-#		l = LetMeSee::new( @cgi, 'help.rhtml' )
 		is_index = true
 	end
 
@@ -39,7 +43,7 @@ begin
 		'Vary' => 'User-Agent',
 		'charset' => 'UTF-8'
 	}
-	body = is_index && @cgi.params['output'][0] != 'xml' ? get_index() : l.eval_rhtml
+	body = is_index ? get_index() : l.eval_rhtml
 	#body = l.eval_rhtml
 	head['Content-Length'] = body.size.to_s
 	head['Pragma'] = 'no-cache'
