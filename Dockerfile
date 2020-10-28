@@ -11,7 +11,7 @@ RUN apt-get update -y && \
 ENV TZ=Asia/Tokyo
 #Install dependencies.
 RUN apt-get install -y --no-install-recommends \
-      ruby ruby-dev eb-utils libeb16-dev git && \
+      ruby ruby-dev eb-utils libeb16-dev git build-essential && \
     apt-get clean && \
     rm -rf /var/cache/apt/archives/*
 
@@ -20,7 +20,21 @@ RUN apt-get install -y --no-install-recommends \
 RUN sed -ri 's/#LoadModule cgid_module/LoadModule cgid_module/g; \ 
              s/DirectoryIndex index.html/DirectoryIndex index.rb index.cgi index.html/g; \ 
              s/Options Indexes FollowSymLinks/Options Indexes FollowSymLinks ExecCGI/g; \
-             s/#AddHandler cgi-script .cgi/AddHandler cgi-script .pl .cgi/g' /usr/local/apache2/conf/httpd.conf
+             s/#AddHandler cgi-script .cgi/AddHandler cgi-script .pl .rb .cgi/g' /usr/local/apache2/conf/httpd.conf
+
+#Setup
+RUN cd /tmp && mkdir src && cd src && \
+    git clone https://github.com/kubo/rubyeb19.git && \
+    cd rubyeb19/ && \
+    ruby extconf.rb && \
+    make && make install
+RUN apt remove git build-essential && apt autoremove
+
+RUN gem install iconv
+
+#Copy docs
+COPY edict-devel/letmesee/ /usr/local/apache2/htdocs/
+RUN chmod 777 /usr/local/apache2/htdocs/*.rb
 
 #I think document should be included.
 COPY README.md /
