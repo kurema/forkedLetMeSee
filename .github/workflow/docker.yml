@@ -1,0 +1,102 @@
+name: Docker Container Build Workflow
+
+#https://github.community/t/github-package-registry-does-not-support-multi-cpu-architecture-image/14339/11
+
+on:
+  schedule:
+    - cron: '0 8 13 * *' # once a month
+  push:
+    branches: 
+      - main
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches: 
+      - main
+  workflow_dispatch:
+    
+
+env:
+  IMAGE_NAME: letmesee
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare
+        id: prep
+        run: |
+          DOCKER_IMAGE=ghcr.io/${{ github.repository_owner }}/${IMAGE_NAME}
+          VERSION=edge
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          fi
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            VERSION=monthly
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION=test
+          fi
+          TAGS="${DOCKER_IMAGE}:${VERSION}"
+          if [[ $VERSION =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+            TAGS="$TAGS,${DOCKER_IMAGE}:latest"
+          fi
+          echo ::set-output name=tags::${TAGS}
+          echo "::set-output name=latest::${DOCKER_IMAGE}:latest"
+
+          # lowercase the branch name
+          BRANCH=$(echo ${GITHUB_REF##*/} | tr '[A-Z]' '[a-z]')
+          LABELS="org.opencontainers.image.revision=$GITHUB_SHA"
+          LABELS="$LABELS,org.opencontainers.image.created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          LABELS="$LABELS,org.opencontainers.image.version=$VERSION"
+          LABELS="$LABELS,com.github.repo.branch=$BRANCH"
+          LABELS="$LABELS,com.github.repo.dockerfile=Dockerfile"
+          echo ::set-output name=labels::${LABELS}
+
+          BUILD_ARGS="BRANCH=$BRANCH"
+          echo ::set-output name=args::${BUILD_ARGS}
+
+      - name: Tag names
+        run: echo ${{ steps.prep.outputs.tags }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@master
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+
+      - name: Builder instance name
+        run: echo ${{ steps.buildx.outputs.name }}
+
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+
+      - name: Login to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1 
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile
+#          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.prep.outputs.tags }}
+          build-args: ${{ steps.prep.outputs.args }}
+          labels: ${{ steps.prep.outputs.labels }}
+          cache-from: type=registry,ref=${{ steps.prep.outputs.latest }}
+          cache-to: type=inline
