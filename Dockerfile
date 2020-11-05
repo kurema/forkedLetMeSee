@@ -30,7 +30,8 @@ RUN cd /tmp && mkdir src && cd src && \
     make && make install
 RUN apt remove -y git build-essential && apt autoremove -y
 
-RUN gem install iconv
+RUN gem update --system && \
+    gem install iconv
 
 #Copy docs
 COPY edict-devel/letmesee/ /usr/local/apache2/htdocs/
