@@ -11,7 +11,7 @@ RUN apt-get update -y && \
 ENV TZ=Asia/Tokyo
 #Install dependencies.
 RUN apt-get install -y --no-install-recommends \
-      ruby ruby-dev eb-utils libeb16-dev git build-essential && \
+      ruby ruby-dev eb-utils libeb16-dev git build-essential ca-certificates && \
     apt-get clean && \
     rm -rf /var/cache/apt/archives/*
 
