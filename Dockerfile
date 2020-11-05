@@ -31,7 +31,7 @@ RUN cd /tmp && mkdir src && cd src && \
 RUN apt remove -y git build-essential && apt autoremove -y
 
 #DEBUG
-RUN gem -v && ruby -v && cat /etc/ssl/certs/*.crt
+#RUN gem -v && ruby -v
 
 RUN gem install iconv
 
