@@ -28,7 +28,7 @@ RUN cd /tmp && mkdir src && cd src && \
     cd rubyeb19/ && \
     ruby extconf.rb && \
     make && make install
-RUN apt remove git build-essential && apt autoremove
+RUN apt remove -y git build-essential && apt autoremove -y
 
 RUN gem install iconv
 
