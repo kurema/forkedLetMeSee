@@ -91,6 +91,10 @@ input,select {
   border-radius: 3px;
   border:solid 1px #ccc;
 }
+img.gaiji_wide, img.gaiji_narrow{
+  height: 1em;
+  width: auto;
+}
 
 @media screen and (max-width: 599px) {
 form.div{
@@ -123,9 +127,5 @@ p,div,h1,h2,h3{
 p{
   font-size: 0.9em;
 }
-
-img.gaiji_wide, img.gaiji_narrow{
-  height: 1em;
-  width: auto;
+  /* 下の}は@mediaに対応 */
 }
-
