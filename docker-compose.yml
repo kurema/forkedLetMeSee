@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  nicochcgi:
+    image: ghcr.io/kurema/letmesee:test
+    container_name: letmesee
+    restart: always
+    ports: 
+      - 50002:80
+    volumes:
+      - ./config:/etc/nicochcgi
+      - /home/share/niconico:/media/niconico
+    
+# docker-compose up -d
+# docker-compose stop
+# docker-compose rm
+# docker-compose down
+# docker-compose down --rmi all
