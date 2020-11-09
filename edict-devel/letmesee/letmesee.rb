@@ -353,12 +353,12 @@ class LetMeSee
 		h.register(EB::HOOK_NEWLINE) do |eb2,argv|
 			"\\<br /\\>\n"
 		end
-		h.register(EB::HOOK_WIDE_FONT) do |eb2,argv|
-			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_w;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" /\>',book, argv[0], @fontsize_w, @fontsize)
-		end
-		h.register(EB::HOOK_NARROW_FONT) do |eb2,argv|
-			'\<img src=\"' + @index + format('?book=%d;mode=gaiji_n;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" /\>',book, argv[0], @fontsize_n, @fontsize)
-		end
+                h.register(EB::HOOK_WIDE_FONT) do |eb2,argv|
+                        '\<img class=\"gaiji_wide\" src=\"' + @index + format('?book=%d;mode=gaiji_w;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" style=\"height: 1em;width: auto;\" /\>',book, argv[0], @fontsize_w, @fontsize)
+                end
+                h.register(EB::HOOK_NARROW_FONT) do |eb2,argv|
+                        '\<img class=\"gaiji_narrow\" src=\"' + @index + format('?book=%d;mode=gaiji_n;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" style=\"height: 1em;width: auto;\" /\>',book, argv[0], @fontsize_n, @fontsize)
+                end
 		h.register(EB::HOOK_BEGIN_EMPHASIS) do |eb2,argv|
 			'\<strong\>'
 		end
