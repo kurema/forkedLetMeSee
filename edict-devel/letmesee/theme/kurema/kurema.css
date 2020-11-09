@@ -123,4 +123,9 @@ p,div,h1,h2,h3{
 p{
   font-size: 0.9em;
 }
+
+img.gaiji_wide, img.gaiji_narrow{
+  height: 1em;
+  width: auto;
 }
+
