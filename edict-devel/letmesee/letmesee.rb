@@ -29,7 +29,7 @@ rescue LoadError
 	end
 end
 
-LetMeSee_VERSION = '1.1.20080316'
+LetMeSee_VERSION = '1.3.20201110'
 
 # enhanced CGI class
 class CGI
