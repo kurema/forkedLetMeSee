@@ -1,15 +1,15 @@
 version: '3'
 services:
 
-  nicochcgi:
+  letmesee:
     image: ghcr.io/kurema/letmesee:test
     container_name: letmesee
     restart: always
     ports: 
       - 50002:80
     volumes:
-      - ./config:/etc/nicochcgi
-      - /home/share/niconico:/media/niconico
+      - ./config/letmesee.conf:/usr/local/apache2/htdocs/letmesee.conf
+      - /home/share/Dictionary:/usr/local/dict
     
 # docker-compose up -d
 # docker-compose stop
