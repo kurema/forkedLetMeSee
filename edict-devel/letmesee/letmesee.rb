@@ -271,7 +271,12 @@ class LetMeSee
 	def gaiji_w
 		code = @cgi.params['code'][0].to_i
 		b = @dicts[@book]
-		b.fontcode = @fontcode
+                begin
+                        b.fontcode = @fontcode
+                rescue RuntimeError
+                	# 適切な外字フォントがない場合は最小サイズにフォールバックします
+                        b.fontcode = EB::FONT_16
+                end
 		print @cgi.header( {'type' => 'image/gif'} )
 		print b.get_widefont(code).to_gif
 	end
@@ -280,7 +285,11 @@ class LetMeSee
 	def gaiji_n
 		code = @cgi.params['code'][0].to_i
 		b = @dicts[@book]
-		b.fontcode = @fontcode
+                begin
+                        b.fontcode = @fontcode
+                rescue RuntimeError
+                        b.fontcode = EB::FONT_16
+                end
 		print @cgi.header( {'type' => 'image/gif'} )
 		print b.get_narrowfont(code).to_gif
 	end
