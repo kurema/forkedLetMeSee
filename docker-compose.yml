@@ -8,7 +8,7 @@ services:
     ports: 
       - 50002:80
     volumes:
-      - ./config/letmesee.conf:/usr/local/apache2/htdocs/letmesee.conf
+      - ./conf/letmesee.conf:/usr/local/apache2/htdocs/letmesee.conf
       - /home/share/Dictionary:/usr/local/dict
     
 # docker-compose up -d
