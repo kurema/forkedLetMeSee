@@ -2,7 +2,7 @@ version: '3'
 services:
 
   letmesee:
-    image: ghcr.io/kurema/letmesee:test
+    image: ghcr.io/kurema/letmesee:latest
     container_name: letmesee
     restart: always
     ports: 
