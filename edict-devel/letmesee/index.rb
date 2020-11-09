@@ -3,7 +3,7 @@
 def get_index()
         @path_cd = File::dirname( __FILE__ )
         @path =  "#{@path_cd}/skel2/index.html"
-        File::open( @path , "r" ) {|f| f.read }
+        File::open( @path , "r:utf-8" ) {|f| f.read }
 end
 
 begin
@@ -45,7 +45,7 @@ begin
 	}
 	body = is_index ? get_index() : l.eval_rhtml
 	#body = l.eval_rhtml
-	head['Content-Length'] = body.size.to_s
+	head['Content-Length'] = body.bytesize.to_s
 	head['Pragma'] = 'no-cache'
 	head['Cache-Control'] = 'no-cache'
 	print @cgi.header( head )
