@@ -11,7 +11,7 @@
 # GNU General Public License for more details.
 #
 
-$KCODE = 'u'
+#$KCODE = 'u'
 
 require 'nkf'
 require 'iconv'
