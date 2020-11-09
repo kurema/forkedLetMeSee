@@ -277,7 +277,8 @@ class LetMeSee
                 	# 適切な外字フォントがない場合は最小サイズにフォールバックします
                         b.fontcode = EB::FONT_16
                 end
-		print @cgi.header( {'type' => 'image/gif'} )
+
+		print @cgi.header( {'type' => 'image/gif' , 'Cache-Control' => 'public, max-age=86400'} )
 		print b.get_widefont(code).to_gif
 	end
 
@@ -290,7 +291,7 @@ class LetMeSee
                 rescue RuntimeError
                         b.fontcode = EB::FONT_16
                 end
-		print @cgi.header( {'type' => 'image/gif'} )
+		print @cgi.header( {'type' => 'image/gif' , 'Cache-Control' => 'public, max-age=86400'} )
 		print b.get_narrowfont(code).to_gif
 	end
 
