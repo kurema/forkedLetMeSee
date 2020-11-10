@@ -99,6 +99,8 @@ class LetMeSee
 		r = str.gsub(/\\</, '<').gsub(/\\>/, '>').gsub(/\\"/, '"')
 		r.gsub!(/<reference>(.+?)<\/reference (.+?)>/) { "<a href=\"#{@index}?mode=reference&amp;#{$2}\">#{$1}</a>" }
 		r.gsub!(/<mono_graphic (.+?)>(.+?)<\/mono_graphic (.+?)>/) {"<img src=\"#{@index}?mode=mono_graphic&amp;#{$3}&amp;#{$1}\" alt=\"[画像]\">#{$2}" }
+                r.gsub!(/<deco_([a-z]+)>(.+?)<\/deco_\1>/) {"<#{$1}>#{$2}</#{$1}>" }
+                r.gsub!(/<\/?deco_([a-z]+)>/, '')
 		return r
 	end
 
@@ -370,22 +372,22 @@ class LetMeSee
                         '\<img class=\"gaiji_narrow\" src=\"' + @index + format('?book=%d;mode=gaiji_n;code=%d\" alt=\"_\" width=\"%d\" height=\"%d\" /\>',book, argv[0], @fontsize_n, @fontsize)
                 end
 		h.register(EB::HOOK_BEGIN_EMPHASIS) do |eb2,argv|
-			'\<strong\>'
+			'\<deco_strong\>'
 		end
 		h.register(EB::HOOK_END_EMPHASIS) do |eb2,argv|
-			'\</strong\>'
+			'\</deco_strong\>'
 		end
 		h.register(EB::HOOK_BEGIN_SUBSCRIPT) do |eb2,argv|
-			'\<sub\>'
+			'\<deco_sub\>'
 		end
 		h.register(EB::HOOK_END_SUBSCRIPT) do |eb2,argv|
-			'\</sub\>'
+			'\</deco_sub\>'
 		end
 		h.register(EB::HOOK_BEGIN_SUPERSCRIPT) do |eb2,argv|
-			'\<sup\>'
+			'\<deco_sup\>'
 		end
 		h.register(EB::HOOK_END_SUPERSCRIPT) do |eb2,argv|
-			'\</sup\>'
+			'\</deco_sup\>'
 		end
 		h.register(EB::HOOK_BEGIN_REFERENCE) do |eb2,argv|
 			'\<span class=\"reference\"\>\<reference\>'
@@ -450,29 +452,44 @@ class LetMeSee
 		h.register(EB::HOOK_END_MPEG) do |eb2,argv|
 			'\</a\>'
 		end
-		if EB.const_defined?(:HOOK_BEGIN_DECORATION)
-			h.register(EB::HOOK_BEGIN_DECORATION) do |eb2,argv|
-				@decoration.push(argv[1])
-				case argv[1]
-				when 1
-					'\<i\>'
-				when 3
-					'\<b\>'
-				end
-			end
-			h.register(EB::HOOK_END_DECORATION) do |eb2,argv|
-				case @decoration.pop
-				when 1
-					'\</i\>'
-				when 3
-					'\</b\>'
-				end
-			end
-		end
-		return h
+                if EB.const_defined?(:HOOK_BEGIN_DECORATION)
+                        h.register(EB::HOOK_BEGIN_DECORATION) do |eb2,argv|
+                                @decoration.push(argv[1])
+                                case argv[1]
+                                when 1
+                                        '\<deco_i\>'
+                                when 3
+                                        '\<deco_b\>'
+                                end
+                        end
+                        h.register(EB::HOOK_END_DECORATION) do |eb2,argv|
+                                case @decoration.pop
+                                when 1
+                                        '\</deco_i\>'
+                                when 3
+                                        '\</deco_b\>'
+                                end
+                        end
+                end
+                return h
 	end
 
 	def conv(str)
 		NKF::nkf('-Ew -m0', str)
         end
+
+        # Not used
+        def close_decorations()
+               r = ''
+               while @decoration.length > 0 do
+                        case @decoration.pop
+                        when 1
+                                r += '\</i\>'
+                        when 3
+                                r += '\</b\>'
+                        end
+                end
+                return r
+        end
+
 end
