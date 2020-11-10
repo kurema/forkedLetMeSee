@@ -8,8 +8,17 @@ forked version of let me see...
 let me see...はEP-WINGをcgiで実行しブラウザから検索を可能にするソフトウェアです。  
 開発はかなりの昔に止まっているように見えます。
 
-フォークと言ってもまずは最近の環境で動くようにして、細かな機能を追加する程度でしょう。  
-ただ、私が作った訳ではないよという事と開発を引き継ぐようなつもりではないよと言いたかっただけ。
+## 利用方法
+事前にEPWing辞書が必要です。各辞書のフォルダを``conf/letmesee.conf``に登録する必要があるので少し面倒です。
+
+### Docker
+```bash
+$ git clone https://github.com/kurema/forkedLetMeSee.git
+$ cd forkedLetMeSee
+$ nano docker-compose.yml
+$ nano conf/letmesee.conf
+$ sudo docker-compose up -d
+```
 
 ## 元プロジェクトについて
 ### 開発者
