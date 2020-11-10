@@ -9,6 +9,7 @@ services:
       - 50002:80
     volumes:
       - ./conf/letmesee.conf:/usr/local/apache2/htdocs/letmesee.conf
+      # /home/share/DictionaryをEPWing辞書が保存されている場所に変更してください。
       - /home/share/Dictionary:/usr/local/dict
     
 # docker-compose up -d
