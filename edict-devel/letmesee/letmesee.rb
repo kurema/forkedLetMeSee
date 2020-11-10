@@ -29,7 +29,7 @@ rescue LoadError
 	end
 end
 
-LetMeSee_VERSION = '1.3.0'
+LetMeSee_VERSION = '1.3.1'
 
 # enhanced CGI class
 class CGI
@@ -441,12 +441,17 @@ class LetMeSee
 			%Q!\<img src=\"#{@index}?mode=jpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]}\" alt=\"#{IMG_STR}\" /\>!
 		end if EB.const_defined?(:HOOK_BEGIN_IN_COLOR_JPEG)
 		h.register(EB::HOOK_BEGIN_WAVE) do |eb2,argv|
-			%Q!\<a href=\"#{@index}?mode=wave;book=#{book};page=#{argv[2]};offset=#{argv[3]};page2=#{argv[4]};offset2=#{argv[5]}\">#{AUDIO_STR} !
+			# HTML5 audio
+			href_audio=%Q!#{@index}?mode=wave;book=#{book};page=#{argv[2]};offset=#{argv[3]};page2=#{argv[4]};offset2=#{argv[5]}!
+			%Q!\<audio src=\"#{href_audio}\" controls preload=\"none\"></audio><a href=\"#{href_audio}\">#{AUDIO_STR} !
 		end
 		h.register(EB::HOOK_END_WAVE) do |eb2,argv|
 			'\</a\>'
 		end
 		h.register(EB::HOOK_BEGIN_MPEG) do |eb2,argv|
+			# MPEG1はHTML5 videoでは基本非対応です。ので、従来通りのリンクに。
+			#href_video = %Q!#{@index}?mode=mpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]};page2=#{argv[4]};offset2=#{argv[5]}!
+			#%Q!\<video src=\"#{href_video}\" controls preload=\"none\" width=\"250\"></video><br/><a href=\"#{href_video}\">#{VIDEO_STR} !
 			%Q!\<a href=\"#{@index}?mode=mpeg;book=#{book};page=#{argv[2]};offset=#{argv[3]};page2=#{argv[4]};offset2=#{argv[5]}\">#{VIDEO_STR} !
 		end
 		h.register(EB::HOOK_END_MPEG) do |eb2,argv|
