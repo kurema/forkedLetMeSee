@@ -26,6 +26,7 @@ $ sudo docker-compose up -d
 ### Ubuntu Server
 ```bash
 $ sudo apt-get ruby ruby-dev eb-utils libeb16-dev ispell apache2
+$ # ここでApache関係の設定をする。
 $ sudo nano /etc/apache2/apache2.conf #Enable CGI
 $ git clone https://github.com/kubo/rubyeb19.git
 $ cd rubyeb19
@@ -36,9 +37,10 @@ $ cd ..
 $ gem install iconv
 $ git clone https://github.com/kurema/forkedLetMeSee.git
 $ cd forkedLetMeSee/edict-devel/letmesee
+$ # .htaccessではなくApache側の設定を変更しても良し (次3行)
 $ cp dot.htaccess .htaccess
 $ nano .htaccess #外部アクセスを制限
-$ #Apache の mod_rewrite モジュールを有効化
+$ sudo a2enmod rewrite
 $ nano letmesee.conf
 $ sudo cp -a . /var/www/letmesee
 $ sudo chown -R www-data:www-data /var/www/letmesee
