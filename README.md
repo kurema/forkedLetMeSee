@@ -49,6 +49,9 @@ $ sudo chmod 755 /var/www/letmesee/*.rb
 
 [外部記事](https://skalldan.wordpress.com/2013/03/11/raspberry-pi-%E3%81%A7%E9%81%8A%E3%81%B6-9-%E8%BE%9E%E6%9B%B8%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%A8%E3%81%97%E3%81%A6/)
 
+ApacheのCGI有効化などについては各自検索してください。  
+他のディストリビューションやcgi-binを利用する際などは適宜読み替えてください。
+
 ## 元プロジェクトについて
 ### 開発者
 [edict-devel/letmesee/AUTHORS](edict-devel/letmesee/AUTHORS)参照。
