@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # Copyright (C) 2002-2007  Kazuhiko <kazuhiko@fdiary.net>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -14,7 +16,7 @@
 #$KCODE = 'u'
 
 require 'nkf'
-require 'iconv'
+#require 'iconv'
 require 'eb'
 require 'cgi'
 require './stem'
@@ -61,7 +63,10 @@ class LetMeSee
 		@query = (@cgi.params['query'][-1] || '')
 		@ie = @cgi.params['ie'][0] || "UTF8"
 		begin
-			@query = Iconv.conv("utf-8", @ie, @query)
+			if @ie.casecmp("utf-8") != 0 then
+				@ec = Encoding::Converter.new(@ie, "utf-8")
+				@query = @ec.convert(@query)
+			end
                 rescue
 			@query = NKF::nkf("-w -m0", @query)
 		end
@@ -160,10 +165,12 @@ class LetMeSee
 		begin
 			result = nil
 			IO.popen("#{@ispell_command} -a -m -C -d #{dict}", 'r+') do |io|
-				io.write("#{Iconv.conv('iso-8859-1', 'utf-8', word)}\n")
+				#io.write("#{Iconv.conv('iso-8859-1', 'utf-8', word)}\n")
+				io.write("#{Encoding::Converter.new(Encoding::UTF_8, Encoding::ISO_8859_1).convert(word)}\n")
 				io.close_write()
 				io.gets() # Ignore this header line.
-				result = Iconv.conv('utf-8', 'iso-8859-1', io.read)
+				#result = Iconv.conv('utf-8', 'iso-8859-1', io.read)
+				result = Encoding::Converter.new(Encoding::ISO_8859_1, Encoding::UTF_8).convert(io.read)
 			end
 			if $? == 0
 				if /\A\+ (.*)/ =~ result
