@@ -97,7 +97,8 @@ jobs:
           file: ./Dockerfile
 #          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7
 #          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7 #arm/v7 have SSL issue on gem. I don't know why.
+#          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7 #arm/v7 have SSL issue on gem. I don't know why.
+          platforms: linux/amd64,linux/arm64,linux/riscv64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           build-args: ${{ steps.prep.outputs.args }}
