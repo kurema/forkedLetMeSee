@@ -5,7 +5,7 @@ forked version of let me see...
 
 ## 概要
 電子辞書オープンラボ・かずひこ様などが作成したlet me see...のフォークです。  
-let me see...はEP-WINGをcgiで実行しブラウザから検索を可能にするソフトウェアです。  
+let me see...は[EPWING](https://ja.wikipedia.org/wiki/EPWING)をcgiで実行しブラウザから検索を可能にするソフトウェアです。  
 2003年頃まで開発されていたものですが、こちらで若干の改良を行っています。
 
 masterブランチはデザインや仕様の変更が入っています。  
@@ -36,7 +36,6 @@ $ ruby extconf.rb
 $ make
 $ sudo make install
 $ cd ..
-$ gem install iconv
 $ git clone https://github.com/kurema/forkedLetMeSee.git
 $ cd forkedLetMeSee/edict-devel/letmesee
 $ # .htaccessではなくApache側の設定を変更しても良し (次3行)
