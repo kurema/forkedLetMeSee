@@ -33,9 +33,10 @@ RUN apt remove -y git build-essential && apt autoremove -y
 
 #DEBUG
 #RUN gem -v && ruby -v
-RUN apt-get install -y --no-install-recommends curl
-RUN curl -Lks 'https://git.io/rg-ssl' | ruby
+#RUN apt-get install -y --no-install-recommends curl
+#RUN curl -Lks 'https://git.io/rg-ssl' | ruby
 
+RUN gem install bundler && gem update --system
 RUN gem install iconv
 
 #Copy docs
