@@ -31,25 +31,6 @@ RUN cd /tmp && mkdir src && cd src && \
     make && make install
 RUN apt remove -y git build-essential && apt autoremove -y
 
-#DEBUG
-#RUN gem -v && ruby -v
-#RUN apt-get install -y --no-install-recommends curl
-#RUN curl -Lks 'https://git.io/rg-ssl' | ruby
-
-#Add cert
-#https://l-w-i.net/t/aws/ec2_100.txt
-#https://bundler.io/v2.0/guides/rubygems_tls_ssl_troubleshooting_guide.html#how-ruby-uses-ca-certificates
-#https://qiita.com/msi/items/9cb90271836386dafce3
-#COPY GemCert.pem /tmp/GemCert.pem
-#RUN mkdir /usr/share/ca-certificates/Gem && \
-#    cp /tmp/GemCert.pem /usr/share/ca-certificates/Gem && \
-#    echo "Gem/GemCert.pem" >> /etc/ca-certificates.conf && \
-#    update-ca-certificates && \
-#    rm /tmp/GemCert.pem
-
-#RUN gem install bundler && gem update --system
-#RUN gem install iconv
-
 #Copy docs
 COPY edict-devel/letmesee/ /usr/local/apache2/htdocs/
 RUN chmod 777 /usr/local/apache2/htdocs/*.rb
