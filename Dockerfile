@@ -40,7 +40,10 @@ RUN apt remove -y git build-essential && apt autoremove -y
 #https://l-w-i.net/t/aws/ec2_100.txt
 #https://bundler.io/v2.0/guides/rubygems_tls_ssl_troubleshooting_guide.html#how-ruby-uses-ca-certificates
 COPY GemCert.pem /tmp/GemCert.pem
-RUN cat /tmp/GemCert.pem >> /etc/ssl/certs/ca-certificates.crt
+RUN mkdir /usr/share/ca-certificates/Gem && \
+    cp /tmp/GemCert.pem /usr/share/ca-certificates/Gem && \
+    echo "Gem/GemCert.pem" >> /etc/ca-certificates.conf && \
+    update-ca-certificates
 
 RUN gem install bundler && gem update --system
 RUN gem install iconv
