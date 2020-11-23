@@ -16,7 +16,6 @@
 #$KCODE = 'u'
 
 require 'nkf'
-#require 'iconv'
 require 'eb'
 require 'cgi'
 require './stem'
@@ -165,11 +164,10 @@ class LetMeSee
 		begin
 			result = nil
 			IO.popen("#{@ispell_command} -a -m -C -d #{dict}", 'r+') do |io|
-				#io.write("#{Iconv.conv('iso-8859-1', 'utf-8', word)}\n")
+				# Encoding::Converterは変換前と変換先がiconv.convと逆になります。
 				io.write("#{Encoding::Converter.new(Encoding::UTF_8, Encoding::ISO_8859_1).convert(word)}\n")
 				io.close_write()
 				io.gets() # Ignore this header line.
-				#result = Iconv.conv('utf-8', 'iso-8859-1', io.read)
 				result = Encoding::Converter.new(Encoding::ISO_8859_1, Encoding::UTF_8).convert(io.read)
 			end
 			if $? == 0
