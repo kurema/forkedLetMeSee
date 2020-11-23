@@ -84,7 +84,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
-          
+      
+      # arm/v7 have SSL issue on gem.
+      # To fix it, we download and add certificate.
+      # See
+      #https://bundler.io/v2.0/guides/rubygems_tls_ssl_troubleshooting_guide.html#how-ruby-uses-ca-certificates
       - name: Download GlobalSignRootCA.pem
         run: curl https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem -o GemCert.pem
 
@@ -97,8 +101,8 @@ jobs:
           file: ./Dockerfile
 #          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7
 #          platforms: linux/amd64,linux/arm64,linux/arm/v7
-#          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7 #arm/v7 have SSL issue on gem. I don't know why.
-          platforms: linux/amd64,linux/arm64,linux/riscv64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
+#          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7 
+          platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
           build-args: ${{ steps.prep.outputs.args }}
