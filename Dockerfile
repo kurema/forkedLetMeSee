@@ -36,6 +36,14 @@ RUN apt remove -y git build-essential && apt autoremove -y
 #RUN apt-get install -y --no-install-recommends curl
 #RUN curl -Lks 'https://git.io/rg-ssl' | ruby
 
+#Add cert
+#https://l-w-i.net/t/aws/ec2_100.txt
+RUN apt-get install -y --no-install-recommends curl && \
+    curl https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem \
+         -o /tmp/GlobalSignRootCA.pem && \
+    cat /tmp/GlobalSignRootCA.pem >> /etc/ssl/certs/ca-certificates.crt && \
+    apt remove -y curl
+
 RUN gem install bundler && gem update --system
 RUN gem install iconv
 
