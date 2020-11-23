@@ -89,8 +89,8 @@ jobs:
       # To fix it, we download and add certificate.
       # See
       #https://bundler.io/v2.0/guides/rubygems_tls_ssl_troubleshooting_guide.html#how-ruby-uses-ca-certificates
-      - name: Download GlobalSignRootCA.pem
-        run: curl https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem -o GemCert.pem
+      #- name: Download GlobalSignRootCA.pem
+      #  run: curl https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem -o GemCert.pem
 
       - name: Build and push
         id: docker_build
