@@ -14,6 +14,8 @@ masterブランチはデザインや仕様の変更が入っています。
 ## 利用方法
 事前にEPWing辞書が必要です。各辞書のフォルダを``conf/letmesee.conf``に登録する必要があるので少し面倒です。
 
+外部や不特定多数からのアクセスされる場所での運用には適しません。適切に設定してください。
+
 ### Docker
 ```bash
 $ git clone https://github.com/kurema/forkedLetMeSee.git
