@@ -84,6 +84,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
+          
+      - name: Download GlobalSignRootCA.pem
+        run: curl https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem -o GemCert.pem
 
       - name: Build and push
         id: docker_build
