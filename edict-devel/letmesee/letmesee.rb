@@ -60,7 +60,7 @@ class LetMeSee
 		@cgi, @rhtml = cgi, rhtml
 		load_conf
 		@query = (@cgi.params['query'][-1] || '')
-		@ie = @cgi.params['ie'][0] || "UTF8"
+		@ie = @cgi.params['ie'][0] || "utf-8"
 		begin
 			if @ie.casecmp("utf-8") != 0 then
 				@ec = Encoding::Converter.new(@ie, "utf-8")
