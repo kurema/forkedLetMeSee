@@ -7,7 +7,7 @@ def get_index()
 end
 
 begin
-	require './letmesee.rb'
+	require_relative './letmesee.rb'
 	@cgi = CGI.new
 	is_index = false
 
