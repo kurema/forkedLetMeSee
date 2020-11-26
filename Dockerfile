@@ -21,6 +21,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN sed -ri 's/#LoadModule cgid_module/LoadModule cgid_module/g; \ 
              s/DirectoryIndex index.html/DirectoryIndex index.rb index.cgi index.html/g; \ 
              s/Options Indexes FollowSymLinks/Options Indexes FollowSymLinks ExecCGI/g; \
+             s/#Scriptsock cgisock/Scriptsock cgisock/g; \
              s/#AddHandler cgi-script .cgi/AddHandler cgi-script .pl .rb .cgi/g' /usr/local/apache2/conf/httpd.conf
 
 #Setup
