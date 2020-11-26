@@ -18,7 +18,7 @@
 require 'nkf'
 require 'eb'
 require 'cgi'
-require './stem'
+require_relative './stem'
 begin
 	require 'erb_fast'
 rescue LoadError
