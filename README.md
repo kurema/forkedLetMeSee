@@ -1,7 +1,9 @@
 # forkedLetMeSee
 forked version of let me see...
 
-[Original README](edict-devel/letmesee/README)
+[オリジナルREADME](edict-devel/letmesee/README)
+
+[Qiita記事「DockerでCGI: EPWING電子辞書サーバー「let me see...」 (2003年)」](https://qiita.com/kurema/items/88795f71448d39776e73)
 
 ## 概要
 電子辞書オープンラボ・かずひこ様などが作成したlet me see...のフォークです。  
