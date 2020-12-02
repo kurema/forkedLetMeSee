@@ -55,6 +55,10 @@ $ sudo chmod 755 /var/www/letmesee/*.rb
 ApacheのCGI有効化などについては各自検索してください。  
 他のディストリビューションやcgi-binを利用する際などは適宜読み替えてください。
 
+## スクリーンショット
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/146467/e845ac34-eddc-a2e7-daea-17b33eee4c24.png)
+![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/146467/e111ff27-c7e6-d223-dbcf-472f1cef36f1.png)
+
 ## 元プロジェクトについて
 ### 開発者
 [edict-devel/letmesee/AUTHORS](edict-devel/letmesee/AUTHORS)参照。
