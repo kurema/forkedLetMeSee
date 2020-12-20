@@ -24,7 +24,7 @@ RUN sed -ri 's/#LoadModule cgid_module/LoadModule cgid_module/g; \
              s/#Scriptsock cgisock/Scriptsock cgisock/g; \
              s/#AddHandler cgi-script .cgi/AddHandler cgi-script .pl .rb .cgi/g' /usr/local/apache2/conf/httpd.conf
 
-RUN mkdir /usr/local/apache2/logs && touch /usr/local/apache2/logs/dummy
+RUN mkdir -p /usr/local/apache2/logs && touch /usr/local/apache2/logs/dummy
 
 #Setup
 RUN cd /tmp && mkdir src && cd src && \
