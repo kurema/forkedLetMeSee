@@ -41,5 +41,9 @@ RUN chmod 777 /usr/local/apache2/htdocs/*.rb
 #I think document should be included.
 COPY README.md /
 
+RUN echo "#/bin/sh\nrm -f /usr/local/apache2/logs/cgisock.*\napachectl -D FOREGROUND" > /startup.sh && \
+    chmod 777 /startup.sh
+
 EXPOSE 80
-CMD ["apachectl", "-D", "FOREGROUND"]
+#CMD ["apachectl", "-D", "FOREGROUND"]
+CMD ["sh", "-c", "/startup.sh"]
