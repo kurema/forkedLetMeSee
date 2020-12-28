@@ -1,4 +1,6 @@
 # forkedLetMeSee
+![Docker Container Build Workflow](https://github.com/kurema/forkedLetMeSee/workflows/Docker%20Container%20Build%20Workflow/badge.svg)
+
 forked version of let me see...
 
 [オリジナルREADME](edict-devel/letmesee/README)
